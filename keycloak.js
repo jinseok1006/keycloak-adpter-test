@@ -2,8 +2,8 @@ import Keycloak from "https://cdn.jsdelivr.net/npm/keycloak-js@25.0.1/+esm";
 
 const keycloak = new Keycloak({
   url: "",
-  realm: "",
-  clientId: "",
+  realm: "test-realm",
+  clientId: "keycloak-adapter-test",
 });
 
 const init = async () =>
