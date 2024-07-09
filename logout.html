@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module">
+      import { keycloak,init, logout, loadUserProfile } from "./keycloak.js";
+      window.logout = logout;
+
+      window.onload = async () => {
+        const authenticated = await init();
+
+        if (!authenticated) {
+          window.location.href = "/index.html";
+        }
+
+        const profile = await loadUserProfile();
+        document.querySelector(".profile").textContent = JSON.stringify(
+          profile,
+          null,
+          4
+        );
+      };
+    </script>
+  </head>
+  <body>
+    <p class="notice">"You are logged in"</p>
+    <button onclick="logout();">logout</button>
+    <pre class="profile"></pre>
+  </body>
+</html>
+
